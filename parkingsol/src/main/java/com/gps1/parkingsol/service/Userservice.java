@@ -30,15 +30,22 @@ public class Userservice {
         userrepo.deleteById(id);
     }
 
-    public void createuser( User user ){
-        userrepo.save(user);
+    public boolean createuser(User user) {
+        try {
+            userrepo.save(user);  // Save the user to the database
+            return true;  // If the user was successfully saved, return true
+        } catch (Exception e) {
+            e.printStackTrace();  // Log any exception (optional)
+            return false;  // If an exception occurs, return false
+        }
     }
+
 
     public User findbyemail(String email){
         return userrepo.findByemail(email);
     }
 
-    //We are going to verify if the user rhass the same password as thta in the database
+
 
     public boolean verifycredentials(String email ,String password){
         User user = userrepo.findByemail(email);

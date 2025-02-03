@@ -15,12 +15,11 @@ public class Booking {
     public Long id;
 
 
-
     public double price;
 
 
 
-    private int quantity;
+    public int quantity;
 
     public Date date;
 

@@ -5,26 +5,30 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-@Getter
-@Setter
 
 @Entity
 @Table(name="users")
-public class User {
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
-    public String name;
+    private String name;
 
-    public String email;
+    @Column(unique = true)
+    private String email;
 
-    public String password;
+    private String password;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    public List<Booking> bookings;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
 
+    public User() {
+
+    }
+
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -57,22 +61,20 @@ public class User {
         this.password = password;
     }
 
-    public List<Booking> getOrders() {
+    public List<Booking> getBookings() {
         return bookings;
     }
 
-    public void setOrders(List<Booking> orders) {
-        this.bookings = orders;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
+    // Parameterized constructor if needed
     public User(Long id, String name, String email, String password, List<Booking> bookings) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.bookings = bookings;
-    }
-    public User(){
-
     }
 }

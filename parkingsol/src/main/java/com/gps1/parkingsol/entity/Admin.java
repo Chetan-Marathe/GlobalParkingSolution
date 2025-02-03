@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
-@Getter
-@Setter
+
 @Entity
     @Table(name="admin")
     public class Admin {
@@ -71,5 +70,7 @@ import org.springframework.beans.factory.annotation.Value;
             this.name=name;
             this.password=password;
         }
-    }
+
+
+}
 

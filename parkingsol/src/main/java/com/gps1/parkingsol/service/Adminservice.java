@@ -13,6 +13,7 @@ public class Adminservice {
     private Adminrepo adminrepo;
 
     public List<Admin> getAlladmin(){
+
         return adminrepo.findAll();
     }
 
@@ -41,6 +42,7 @@ public class Adminservice {
 
         return admin.getPassword().equals(password);
     }
+
 
 
     public void createadmin( Admin admin ){

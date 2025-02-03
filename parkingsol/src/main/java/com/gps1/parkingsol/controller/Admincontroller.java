@@ -11,6 +11,7 @@ import com.gps1.parkingsol.service.Userservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ public class Admincontroller {
     private Adminservice adminservice;
 
     @Autowired
-    private Userservice userservice;
+    public Userservice userservice;
 
     @Autowired
     private ParkingService parkingservice;
@@ -34,16 +35,21 @@ public class Admincontroller {
     private Bookingservice bookingservice;
 
     @GetMapping("/admin/verify/credentials")
-    public String verifyCredentials(@ModelAttribute("admin") Admin admin, Model model){
-        if (adminservice.verifycredentials(admin.getEmail(),admin.getPassword())) {
-            model.addAttribute("admin",new Admin());
-            model.addAttribute("user",new User());
-            model.addAttribute("product",new Parking());
+    public String verifyCredentials(@ModelAttribute("admin") Admin admin, Model model) {
+
+
+        // Perform the check with the service
+        if (adminservice.verifycredentials(admin.getEmail(), admin.getPassword())) {
+            model.addAttribute("admin", new Admin());
+            model.addAttribute("user", new User());
+            model.addAttribute("parking", new Parking());
             return "redirect:/admin/home";
         }
-        model.addAttribute("error","invalid emial or passwprd");
+
+        model.addAttribute("error", "Invalid email or password");
         return "Login";
     }
+
 
     @GetMapping("/admin/home")
     public String adminhomepage(Model model){
@@ -62,7 +68,7 @@ public class Admincontroller {
     }
 
     @GetMapping("/update/admin/{id}")
-    public String update(@PathVariable Long id, Model model){
+    public String updateadmin(@PathVariable Long id, Model model){
         model.addAttribute("admin",adminservice.getadminbyid(id));
         return "UpdateAdmin";
     }
@@ -79,18 +85,28 @@ public class Admincontroller {
         return "redirect:/admin/home";
     }
 
-    @PostMapping("/user/login")
-    public String userLogin(User user, RedirectAttributes redirectAttributes){
-        if (userservice.verifycredentials(user.getEmail(),user.getPassword())){
-            user=userservice.findbyemail(user.getEmail());
-            redirectAttributes.addAttribute("userId",user.getId());
-            return "redirect:/user/home";
-        }
-        redirectAttributes.addAttribute("error","Invalid email or password");
-        return "Login";
+
+
+
+    @GetMapping("/user/login")
+    public String showLoginForm(Model model) {
+        model.addAttribute("user", new User());
+        return "UserLogin";
     }
 
-    @PostMapping("/place/booking")
+    @PostMapping("/user/login")
+    public String processLoginForm(User user, RedirectAttributes redirectAttributes) {
+        if (userservice.verifycredentials(user.getEmail(), user.getPassword())) {
+            user = userservice.findbyemail(user.getEmail());
+            redirectAttributes.addAttribute("userId", user.getId());
+            return "redirect:/user/home";
+        } else {
+            redirectAttributes.addAttribute("error", "Invalid email or password");
+            return "redirect:/user/login";
+        }
+    }
+
+    @PostMapping("/place/parking")
     public String placebooking(Booking booking, Long userId, RedirectAttributes redirectAttributes) {
         double totalAmount = booking.getPrice() * booking.getQuantity();
         booking.setAmount(totalAmount);

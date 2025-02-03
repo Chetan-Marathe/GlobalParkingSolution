@@ -1,7 +1,7 @@
 package com.gps1.parkingsol.controller;
 
 import com.gps1.parkingsol.entity.Message;
-import com.gps1.parkingsol.service.Messageservice;
+import com.gps1.parkingsol.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class Contactuscontroller {
 
     @Autowired
-    public Messageservice messageservice;
+    public ContactService messageservice;
 
     @PostMapping("/send/message")
     public String sendMessage(Message message, Model model){

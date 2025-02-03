@@ -1,16 +1,16 @@
 package com.gps1.parkingsol.service;
 
 import com.gps1.parkingsol.entity.Message;
-import com.gps1.parkingsol.repository.Messagerepo;
+import com.gps1.parkingsol.repository.ContactRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class Messageservice {
+public class ContactService {
     @Autowired
-    private Messagerepo messageRepository;
+    private ContactRepo messageRepository;
 
     public List<Message> getAllmessage(){
         return messageRepository.findAll();

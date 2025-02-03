@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @Entity
@@ -19,6 +20,22 @@ public class Parking {
     public int price;
 
     public String description;
+
+
+    public double getPrice() {
+        return price;
+    }
+
+
+    public Parking(Long id, String name, int price, String description) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
+    public Parking(){
+
+    }
 
     public Long getId() {
         return id;
@@ -36,10 +53,6 @@ public class Parking {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
     public void setPrice(int price) {
         this.price = price;
     }
@@ -50,16 +63,6 @@ public class Parking {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Parking(Long id, String name, int price, String description) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-    }
-    public Parking(){
-
     }
 }
 

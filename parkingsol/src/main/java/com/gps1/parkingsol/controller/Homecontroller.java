@@ -29,12 +29,12 @@ public class Homecontroller {
     }
 
     @GetMapping("/aboutus")
-    public String aboutus(){
+    public String aboutusn(){
         return "aboutus";
     }
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String loginn(Model model){
         model.addAttribute("admin",new Admin());
         return "Login";
     }
