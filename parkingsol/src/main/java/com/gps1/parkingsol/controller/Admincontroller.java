@@ -84,6 +84,25 @@ public class Admincontroller {
         adminservice.deleteadmin(admin,id);
         return "redirect:/admin/home";
     }
+    // Show Signup Form
+    @GetMapping("/user/signup")
+    public String showSignupForm(Model model) {
+        model.addAttribute("user", new User());
+        return "signup"; // Make sure this matches the signup.html filename
+    }
+
+    // Process Signup Form
+    @PostMapping("/user/signup")
+    public String processSignup(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
+        if (userservice.isEmailAlreadyExists(user.getEmail())) {
+            redirectAttributes.addFlashAttribute("error", "Email already registered. Please login.");
+            return "redirect:/user/signup";
+        }
+        userservice.createUser(user);
+        redirectAttributes.addFlashAttribute("messageSuccess", "Registration successful! Please login.");
+        return "redirect:/user/login";
+    }
+
 
 
 

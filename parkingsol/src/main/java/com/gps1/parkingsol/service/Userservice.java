@@ -30,15 +30,15 @@ public class Userservice {
         userrepo.deleteById(id);
     }
 
-    public boolean createuser(User user) {
-        try {
-            userrepo.save(user);  // Save the user to the database
-            return true;  // If the user was successfully saved, return true
-        } catch (Exception e) {
-            e.printStackTrace();  // Log any exception (optional)
-            return false;  // If an exception occurs, return false
-        }
+    public boolean isEmailAlreadyExists(String email) {
+        return userrepo.findByemail(email) != null;
     }
+
+    public void createUser(User user) {
+        // Hash password if needed before saving (recommended)
+        userrepo.save(user);
+    }
+
 
 
     public User findbyemail(String email){
@@ -55,4 +55,5 @@ public class Userservice {
             return false;
         }
     }
+
 }

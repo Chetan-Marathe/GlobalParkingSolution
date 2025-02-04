@@ -16,7 +16,7 @@ public class Usercontroller {
 
     @PostMapping("/add/user")
     public String adduser(User user){
-        userservice.createuser(user);
+        userservice.createUser(user);
         return "Login";
     }
 
@@ -28,7 +28,7 @@ public class Usercontroller {
 
     @PostMapping("/update/user")
     public String updateuser(User user){
-        userservice.createuser(user);
+        userservice.createUser(user);
         return "redirect:/admin/home";
     }
 

@@ -1,0 +1,47 @@
+<!-- src/main/resources/templates/UserLogin.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">User Login</h1>
+
+        <!-- Display error message if login fails -->
+        <div th:if="${error}" class="notification is-danger">
+            <p th:text="${error}"></p>
+        </div>
+
+        <!-- Login Form -->
+        <form th:action="@{/user/login}" th:object="${user}" method="post" class="box">
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input class="input" type="email" th:field="*{email}" placeholder="Enter your email" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input class="input" type="password" th:field="*{password}" placeholder="Enter your password" required>
+                </div>
+            </div>
+
+            <div class="field is-grouped is-grouped-centered">
+                <div class="control">
+                    <button type="submit" class="button is-link">Login</button>
+                </div>
+                <div class="control">
+                    <a href="/user/signup" class="button is-light">Sign Up</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>
