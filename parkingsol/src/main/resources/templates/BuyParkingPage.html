@@ -55,7 +55,7 @@
     <!-- Search Form -->
     <div class="card p-4">
         <form th:action="@{/parking/search}" method="post" class="text-center">
-            <h3>Product Search</h3>
+            <h3>Parking Search</h3>
             <input type="hidden" name="userId" th:value="${userId}">
             <div class="input-group my-3">
                 <input type="text" class="form-control" name="name" required placeholder="Enter the Parking Name..." />
@@ -77,10 +77,7 @@
                 <label class="form-label">Parking Price:</label>
                 <input type="text" class="form-control" name="price" th:value="${parking.price}" readonly />
             </div>
-            <div class="mb-3">
-                <label class="form-label">Quantity:</label>
-                <input type="number" class="form-control" name="quantity" min="1" placeholder="Minimum: 1Parking" />
-            </div>
+
             <button type="submit" class="btn btn-primary">Book Now</button>
         </form>
     </div>
@@ -92,16 +89,12 @@
             <thead class="table-dark">
             <tr>
                 <th>Parking Price</th>
-                <th>Parking Quantity</th>
-                <th>Parking Amount</th>
                 <th>Date</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="booking : ${bookingList}">
                 <td th:text="${booking.price}"></td>
-                <td th:text="${booking.quantity}"></td>
-                <td th:text="${booking.amount}"></td>
                 <td th:text="${booking.date}"></td>
             </tr>
             </tbody>

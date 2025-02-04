@@ -17,7 +17,7 @@ public class Usercontroller {
     @PostMapping("/add/user")
     public String adduser(User user){
         userservice.createUser(user);
-        return "Login";
+        return "redirect:/admin/home";
     }
 
     @GetMapping("/update/user/{id}")

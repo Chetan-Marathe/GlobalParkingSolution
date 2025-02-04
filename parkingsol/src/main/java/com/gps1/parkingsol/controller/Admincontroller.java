@@ -34,7 +34,7 @@ public class Admincontroller {
     @Autowired
     private Bookingservice bookingservice;
 
-    @GetMapping("/admin/verify/credentials")
+    @PostMapping("/admin/verify/credentials")
     public String verifyCredentials(@ModelAttribute("admin") Admin admin, Model model) {
 
 
