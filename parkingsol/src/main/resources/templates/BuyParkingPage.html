@@ -161,6 +161,10 @@
                 <label class="form-label">Time:</label>
                 <input type="number" class="form-control" name="quantity" min="1" placeholder="Minimum: 1Hr" />
             </div>
+            <div class="mb-3">
+                <label class="form-label">Parking Duration:</label>
+                <input type="text" class="form-control" name="Duration" placeholder="Enter Duration" />
+            </div>
             <button type="submit" class="btn btn-primary">Book Now</button>
         </form>
     </div>
@@ -171,6 +175,7 @@
             <thead class="table-dark">
             <tr>
                 <th>Parking Price</th>
+                <th>Parking Duration</th>
                 <th>Parking Time</th>
                 <th>Total Amount</th>
                 <th>Date</th>
@@ -179,6 +184,7 @@
             <tbody>
             <tr th:each="booking : ${bookingList}">
                 <td th:text="${booking.price}"></td>
+                <td th:text="${booking.Duration}"></td>
                 <td th:text="${booking.quantity}"></td>
                 <td th:text="${booking.amount}"></td>
                 <td th:text="${booking.date}"></td>

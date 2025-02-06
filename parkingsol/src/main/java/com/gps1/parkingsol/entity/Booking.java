@@ -39,8 +39,15 @@ public class Booking {
 
     public String name;
 
+    public String Duration;
 
+    public String getDuration() {
+        return Duration;
+    }
 
+    public void setDuration(String duration) {
+        Duration = duration;
+    }
 
     @ManyToOne
     @JoinColumn(name="user_Id")

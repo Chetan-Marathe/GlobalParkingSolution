@@ -21,6 +21,15 @@ public class Parking {
 
     public String description;
 
+    public String duration;
+
+    public String getHours() {
+        return duration;
+    }
+
+    public void setHours(String duration) {
+        this.duration = duration;
+    }
 
     public double getPrice() {
         return price;
