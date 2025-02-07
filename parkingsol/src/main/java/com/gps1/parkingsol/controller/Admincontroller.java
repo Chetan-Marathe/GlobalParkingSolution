@@ -134,7 +134,7 @@ public class Admincontroller {
         User user = userservice.getuserbyid(userId);
         booking.setUser(user);
 
-        bookingservice.createbooking(booking);
+        bookingservice.createBooking(booking);
 
         redirectAttributes.addAttribute("userId", userId);
         redirectAttributes.addAttribute("messageSuccess", "Booking has been confirmed");

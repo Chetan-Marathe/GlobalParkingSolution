@@ -23,11 +23,11 @@ public class Parking {
 
     public String duration;
 
-    public String getHours() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setHours(String duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
