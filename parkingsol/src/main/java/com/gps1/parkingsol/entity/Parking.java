@@ -74,4 +74,3 @@ public class Parking {
         this.description = description;
     }
 }
-
